@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class Modifier
@@ -14,23 +15,15 @@ public class Modifier
     
     public float value;
 
-    [SerializeField]
-    private List<Condition> conditions;
-
     public Modifier(int moves, ModType type, List<Condition> conditions, float value = 1)
     {
         this.moves = moves;
         this.type = type;
-        this.conditions = conditions;
         this.value = value;
         mods.Add(this);
     }
 
-    public float Use()
-    {
-        bool res = conditions.Aggregate(true, (current, cond) => current && cond.Use());
-        return res && moves != 0 ? value : 0;
-    }
+    public float Use() => value;
     public static void Move()
     {
         foreach (Modifier mod in mods.ToList())

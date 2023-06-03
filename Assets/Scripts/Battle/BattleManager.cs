@@ -108,7 +108,11 @@ public class BattleManager : MonoBehaviour
         grid.Block();
         player.Save();
         Player.data.money += group.reward;
-        BattleLog.Clear();
+        foreach (var log in BattleLogs.Logs.FindAndCast<DamageLog>())
+        {
+            Debug.unityLogger.Log(log.GetData().Item3);
+        }
+        BattleLogs.Logs.Clear();
         Modifier.mods.Clear();
         SceneManager.LoadScene("Map");
     }

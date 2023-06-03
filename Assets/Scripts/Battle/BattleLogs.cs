@@ -1,19 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 
-public static class BattleLog
+public static class BattleLogs
 {
-    private static readonly List<ILog> Logs = new();
-
-    public static List<T> GetLogs<T>() => Logs.Where(log => log is T).Cast<T>().ToList();
-
-    public static List<ILog> GetAllLogs() => Logs;
-
-    public static ILog GetLastLog() => Logs[-1];
-
-    public static void Clear() => Logs.Clear();
-
-    internal static void AddLog(ILog log) => Logs.Add(log);
+    public static MyList<ILog> Logs { get; } = new();
 }
 
 public class GridLog : ILog
@@ -70,5 +59,5 @@ public class DamageLog
 
 public interface ILog
 {
-    protected internal static void AddLog(ILog log) => BattleLog.AddLog(log);
+    protected internal static void AddLog(ILog log) => BattleLogs.Logs.Add(log);
 }
