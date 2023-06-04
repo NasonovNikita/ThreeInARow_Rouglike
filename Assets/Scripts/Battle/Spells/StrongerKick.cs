@@ -1,14 +1,20 @@
-using System.Collections.Generic;
+using Battle.Units;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StrongerKick", menuName = "Spells/StrongerKick")]
-public class StrongerKick : Spell
+namespace Battle.Spells
 {
-    public override void Cast()
+    [CreateAssetMenu(fileName = "StrongerKick", menuName = "Spells/StrongerKick")]
+    public class StrongerKick : Spell
     {
-        if (CantCast()) return;
+        [SerializeField] private int moves;
+
+        [SerializeField] private float value;
+        public override void Cast()
+        {
+            if (CantCast()) return;
         
-        manager.player.mana -= manaCost;
-        manager.player.damage.AddMod(new Modifier(moves, ModType.Mul, new List<Condition>(), value), ModAffect.Get);
+            BattleManager.player.mana -= manaCost;
+            Modifier.CreateModifier(BattleManager.player, moves, ModType.Mul, ModAffect.Get, StatType.Damage, value);
+        }
     }
 }

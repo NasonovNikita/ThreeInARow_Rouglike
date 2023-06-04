@@ -1,17 +1,21 @@
+using Battle.Units;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
-public class StatsView : MonoBehaviour
+namespace Map
 {
-    private Text text;
-    public void Awake()
+    [RequireComponent(typeof(Text))]
+    public class StatsView : MonoBehaviour
     {
-        text = GetComponent<Text>();
-    }
+        private Text _text;
+        public void Awake()
+        {
+            _text = GetComponent<Text>();
+        }
 
-    public void Start()
-    {
-        text.text = $"Hp/Mana: {Player.data.hp.GetValue()}/{Player.data.mana.GetValue()}  Cash: {Player.data.money}";
+        public void Start()
+        {
+            _text.text = $"Hp/Mana: {Player.data.hp.GetValue()}/{Player.data.mana.GetValue()}  Cash: {Player.data.money}";
+        }
     }
 }

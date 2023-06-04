@@ -1,16 +1,24 @@
-using System.Collections.Generic;
+using Battle.Units;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PoweredKick", menuName = "Spells/PoweredKick")]
-public class PoweredKick : Spell
+namespace Battle.Spells
 {
-    public override void Cast()
+    [CreateAssetMenu(fileName = "PoweredKick", menuName = "Spells/PoweredKick")]
+    public class PoweredKick : Spell
     {
-        if (CantCast()) return;
+        [SerializeField] private int stunMoves;
+
+        [SerializeField] private int moves;
+
+        [SerializeField] private float value;
+        public override void Cast()
+        {
+            if (CantCast()) return;
         
-        manager.player.mana -= manaCost;
-        manager.player.statusModifiers.Add(new Modifier(moves, ModType.Stun, new List<Condition>()));
-        manager.player.damage.AddMod(new Modifier(moves + 1, ModType.Mul,new List<Condition>(), value), ModAffect.Get);
-        manager.EndTurn();
+            BattleManager.player.mana -= manaCost;
+            Modifier.CreateModifier(BattleManager.player, stunMoves, ModType.Stun);
+            Modifier.CreateModifier(BattleManager.player, moves, ModType.Mul, ModAffect.Get, StatType.Damage, value);
+            BattleManager.EndTurn();
+        }
     }
 }

@@ -1,26 +1,22 @@
 using UnityEngine;
 
-public abstract class Spell : ScriptableObject
+namespace Battle
 {
-    [SerializeField] protected int manaCost;
-
-    [SerializeField] public string title;
-
-    [SerializeField] protected float value;
-
-    [SerializeField] protected int moves;
-
-    protected BattleManager manager;
-
-    public void Init()
+    public abstract class Spell : ScriptableObject
     {
-        manager = FindFirstObjectByType<BattleManager>();
-    }
+        [SerializeField] protected SerializedUseAble useAble;
+        
+        [SerializeField] protected int manaCost;
 
-    public abstract void Cast();
+        [SerializeField] public string title;
 
-    protected bool CantCast()
-    {
-        return manager.State != BattleState.Turn || manager.player.mana < manaCost;
+        public abstract void Cast();
+
+        protected bool CantCast()
+        {
+            if (BattleManager.State == BattleState.Turn && BattleManager.player.mana >= manaCost) return true;
+            BattleManager.player.mana -= manaCost;
+            return false;
+        }
     }
 }

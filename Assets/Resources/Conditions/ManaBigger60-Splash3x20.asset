@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3097e69f41d543b280a1c82e41ffe835, type: 3}
+  m_Name: ManaBigger60-Splash3x20
+  m_EditorClassIdentifier: 
+  value: 60
+  useAble: {fileID: 11400000, guid: e7a41c9dc25a5954aa0971e28f71fe82, type: 2}
+  type: 1
+  compare: 1

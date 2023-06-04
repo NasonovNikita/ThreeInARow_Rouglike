@@ -1,3 +1,5 @@
+/*
+using Battle;
 using UnityEditor;
 using UnityEngine;
 
@@ -55,3 +57,4 @@ public class ConditionInspectorDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+*/

@@ -1,3 +1,8 @@
+using Audio;
+using Battle;
+using Battle.Units;
+using Battle.Units.Data;
+using Map;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public int seed;
 
-    private bool generated;
+    private bool _generated;
     public void Awake()
     {
         if (instance == null)
@@ -50,7 +55,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("vertex"))
         {
             LoadSave();
-            if(!generated) GenerateMap();
+            if(!_generated) GenerateMap();
             SceneManager.LoadScene(PlayerPrefs.GetString("scene"));
         }
         else
@@ -76,17 +81,18 @@ public class GameManager : MonoBehaviour
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("vertex", Map.currentVertex);
+        PlayerPrefs.SetInt("vertex", MapManager.currentVertex);
         PlayerPrefs.SetString("scene", SceneManager.GetActiveScene().name);
         PlayerPrefs.SetString("PlayerData", JsonUtility.ToJson(Player.data));
         PlayerPrefs.SetInt("seed", seed);
+        BattleManager.group = ScriptableObject.CreateInstance<EnemyGroup>();
         PlayerPrefs.SetString("group", JsonUtility.ToJson(BattleManager.group));
         PlayerPrefs.SetString("goods", JsonUtility.ToJson(ShopManager.goods));
     }
 
     private void ResetAll()
     {
-        Map.currentVertex = -1;
+        MapManager.currentVertex = -1;
         Player.data = Instantiate(Resources.Load<PlayerData>("Presets/NewGamePreset"));
         
         if (randomSeed) seed = Random.Range(0, 10000000);
@@ -97,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadSave()
     {
-        Map.currentVertex = PlayerPrefs.GetInt("vertex");
+        MapManager.currentVertex = PlayerPrefs.GetInt("vertex");
         JsonUtility.FromJsonOverwrite(PlayerPrefs.GetString("PlayerData"), Player.data);
         seed = PlayerPrefs.GetInt("seed");
         BattleManager.group = ScriptableObject.CreateInstance<EnemyGroup>();
@@ -108,7 +114,7 @@ public class GameManager : MonoBehaviour
     private void GenerateMap()
     {
         generator = FindFirstObjectByType<MapGenerator>();
-        Map.map = generator.GetMap(seed);
-        generated = true;
+        MapManager.map = generator.GetMap(seed);
+        _generated = true;
     }
 }

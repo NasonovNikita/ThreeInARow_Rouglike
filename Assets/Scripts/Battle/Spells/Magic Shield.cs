@@ -1,14 +1,20 @@
-using System.Collections.Generic;
+using Battle.Units;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MagicShield", menuName = "Spells/MagicShield")]
-public class MagicShield : Spell
+namespace Battle.Spells
 {
-    public override void Cast()
+    [CreateAssetMenu(fileName = "MagicShield", menuName = "Spells/MagicShield")]
+    public class MagicShield : Spell
     {
-        if (CantCast()) return;
+        [SerializeField] private int moves;
+
+        [SerializeField] private float value;
         
-        manager.player.mana -= manaCost;
-        manager.player.hp.AddMod(new Modifier(moves, ModType.Mul, new List<Condition>()), ModAffect.Sub);
+        public override void Cast()
+        {
+            if (CantCast()) return;
+            
+            Modifier.CreateModifier(BattleManager.player, moves, ModType.Mul, ModAffect.Sub, StatType.Hp, value);
+        }
     }
 }

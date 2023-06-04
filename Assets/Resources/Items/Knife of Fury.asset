@@ -12,17 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30a99ce65821304a949437ebf6d81b3, type: 3}
   m_Name: Knife of Fury
   m_EditorClassIdentifier: 
-  stat: 2
-  affects: 2
-  mod:
-    moves: -1
-    type: 0
-    value: 5
-    conditions:
-    - type: 1
-      value: 50
-      compare: 3
-      gem: 0
-      unit: 0
-      stat: 0
   title: Knife Of Fury
+  cond: {fileID: 11400000, guid: a3e53936fbd716348a2723e0cd96e335, type: 2}

@@ -1,20 +1,22 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Condition
+namespace Battle
 {
-    private static List<Condition> _conditions;
+    public abstract class Condition : SerializedUseAble
+    {
+        [SerializeField]
+        protected SerializedUseAble useAble;
+        
+        public static void Clear()
+        {
+            Log.logger = null;
+        }
 
-    [SerializeField] private CondActionType actionType;
-    
-}
+        protected abstract void LogUpdate(Log log);
 
-
-
-internal enum CondActionType
-{
-    ModAdder,
-    ActionExecuter
+        public void Init()
+        {
+            Log.logger += LogUpdate;
+        }
+    }
 }
