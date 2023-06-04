@@ -14,9 +14,9 @@ namespace Battle
 
         protected bool CantCast()
         {
-            if (BattleManager.State == BattleState.Turn && BattleManager.player.mana >= manaCost) return true;
+            if (BattleManager.State != BattleState.Turn || BattleManager.player.mana < manaCost) return false;
             BattleManager.player.mana -= manaCost;
-            return false;
+            return true;
         }
     }
 }

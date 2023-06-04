@@ -29,9 +29,7 @@ namespace Battle.Conditions
             if (Compare((int) stat, (int) value)) useAble.Use();
         }
 
-        protected override void LogUpdate(Log log)
-        {
-        }
+        protected override void LogUpdate(Log log) {}
 
         private bool Compare(int a, int b)
         {
