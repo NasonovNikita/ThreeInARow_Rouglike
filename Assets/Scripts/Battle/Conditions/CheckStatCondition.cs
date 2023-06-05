@@ -7,26 +7,22 @@ namespace Battle.Conditions
     [CreateAssetMenu(fileName = "CheckStat", menuName = "Conditions/CheckStat")]
     public class CheckStatCondition : Condition
     {
-        private Unit _unit;
-
         [SerializeField] private StatType type;
 
         [SerializeField] private CompareMethod compare;
 
         public override void Use()
         {
-            _unit ??= BattleManager.player;
-
             Stat stat = type switch
             {
-                StatType.Hp => _unit.hp,
-                StatType.Mana => _unit.mana,
-                StatType.Damage => _unit.damage,
+                StatType.Hp => unitRelated.hp,
+                StatType.Mana => unitRelated.mana,
+                StatType.Damage => unitRelated.damage,
                 StatType.None => throw new ArgumentException(),
                 _ => throw new ArgumentOutOfRangeException()
             };
-
-            if (Compare((int) stat, (int) value)) useAble.Use();
+            // ReSharper disable once Unity.NoNullPropagation
+            if (Compare((int) stat, (int) value)) useAble?.Use();
         }
 
         protected override void LogUpdate(Log log) {}

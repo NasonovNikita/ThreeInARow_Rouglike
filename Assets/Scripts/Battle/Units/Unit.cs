@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Battle.Units
@@ -26,7 +27,12 @@ namespace Battle.Units
 
             foreach (var item in items)
             {
-                item.Init();
+                item.Init(this);
+            }
+
+            foreach (var spell in spells)
+            {
+                spell.Init(this);
             }
         }
     
@@ -47,7 +53,7 @@ namespace Battle.Units
 
         public bool Stunned()
         {
-            return statusModifiers.Exists(mod => mod.Type == ModType.Stun && mod.Value != 0);
+            return statusModifiers.Exists(mod => mod.Type == ModType.Stun && mod.GetValue() != 0);
         }
 
         public abstract void Act();

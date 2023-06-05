@@ -1,4 +1,3 @@
-using Battle.Units;
 using UnityEngine;
 
 namespace Battle.Spells
@@ -7,17 +6,14 @@ namespace Battle.Spells
     public class PoweredKick : Spell
     {
         [SerializeField] private int stunMoves;
-
-        [SerializeField] private int moves;
-
-        [SerializeField] private float value;
         public override void Cast()
         {
             if (CantCast()) return;
         
             BattleManager.player.mana -= manaCost;
-            Modifier.CreateModifier(BattleManager.player, stunMoves, ModType.Stun);
-            Modifier.CreateModifier(BattleManager.player, moves, ModType.Mul, ModAffect.Get, StatType.Damage, value);
+            Modifier.CreateModifier(unitRelated, stunMoves, ModType.Stun);
+            // ReSharper disable once Unity.NoNullPropagation
+            useAble?.Use();
             BattleManager.EndTurn();
         }
     }

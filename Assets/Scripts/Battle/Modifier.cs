@@ -16,26 +16,24 @@ namespace Battle
         
         [SerializeField] private StatType statTypeType;
         
-        private Unit _unit;
-        
-        private int _moves;
-        
-        public float Value => value;
-        
-        
+        [SerializeField] public int moves;
+
+        public float GetValue() => moves != 0 ? value : 0;
+
+
         public static void CreateModifier(Unit unit, int moves, ModType type, ModAffect affects = ModAffect.None,
             StatType statType = StatType.None, float value = 1)
         {
             Modifier mod = CreateInstance<Modifier>();
-            mod.Init(unit, moves, type, affects, statType, value);
+            mod.Init(moves, type, affects, statType, value);
+            mod.Init(unit);
             mod.Use();
         }
 
-        private void Init(Unit unit, int moves, ModType type, ModAffect affects = ModAffect.None,
+        private void Init(int moves, ModType type, ModAffect affects = ModAffect.None,
             StatType statType = StatType.None, float value = 1)
         {
-            _unit = unit;
-            _moves = moves;
+            this.moves = moves;
             this.type = type;
             this.affects = affects;
             statTypeType = statType;
@@ -45,32 +43,30 @@ namespace Battle
 
         public override void Use()
         {
-            if (_moves == 0) return;
-            
-            _unit ??= BattleManager.player;
+            if (moves == 0) return;
 
             if (type == ModType.Stun)
             {
-                _unit.statusModifiers.Add(this);
+                unitRelated.statusModifiers.Add(Instantiate(this));
             }
             else
             {
                 Stat stat = statTypeType switch
                 {
-                    StatType.Hp => _unit.hp,
-                    StatType.Mana => _unit.mana,
-                    StatType.Damage => _unit.damage,
+                    StatType.Hp => unitRelated.hp,
+                    StatType.Mana => unitRelated.mana,
+                    StatType.Damage => unitRelated.damage,
                     StatType.None => throw new ArgumentException("The modifier shouldn't have stat type!"),
                     _ => throw new ArgumentOutOfRangeException()
                 };
 
-                stat.AddMod(this, affects);
+                stat.AddMod(Instantiate(this), affects);
             }
         }
 
         private void Move(Log log)
         {
-            if (log is TurnLog) _moves -= 1;
+            if (log is TurnLog && moves != 0) moves -= 1;
         }
     }
     

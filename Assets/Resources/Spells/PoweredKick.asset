@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PoweredKick
   m_EditorClassIdentifier: 
   useAble: {fileID: 0}
+  value: 0
   manaCost: 45
   title: Powered Kick
   stunMoves: 1
-  moves: 2
-  value: 2

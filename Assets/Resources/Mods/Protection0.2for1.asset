@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c772b0a5b60ec4f92c99ada5909ddf, type: 3}
-  m_Name: TimeStop
+  m_Script: {fileID: 11500000, guid: a3634b87c50419942a4d79df6fc2dc0f, type: 3}
+  m_Name: Protection0.2for1
   m_EditorClassIdentifier: 
-  useAble: {fileID: 11400000, guid: a9c47ec55ef8fdc4485ccdfdf7b8b18a, type: 2}
-  value: 0
-  manaCost: 50
-  title: Time Stop
+  useAble: {fileID: 0}
+  value: 50
+  type: 0
+  affects: 1
+  statTypeType: 0
+  moves: 1

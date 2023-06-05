@@ -28,7 +28,8 @@ namespace Battle.Conditions
 
         public override void Use()
         {
-            useAble.Use();
+            // ReSharper disable once Unity.NoNullPropagation
+            useAble?.Use();
         }
     }
 }

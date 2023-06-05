@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b3692f3f0def34aa93a63018bec6cf, type: 3}
   m_Name: MagicShield
   m_EditorClassIdentifier: 
-  useAble: {fileID: 0}
-  manaCost: 20
+  useAble: {fileID: 11400000, guid: 09965bdf4fd8da3459310b1ab250ee86, type: 2}
+  value: 0
+  manaCost: 40
   title: Magic Shield
-  moves: 1
-  value: -0.5

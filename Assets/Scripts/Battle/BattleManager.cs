@@ -135,7 +135,7 @@ namespace Battle
             }
             
             TurnLog.Log();
-
+            
             if (!player.Stunned())
             {
                 State = BattleState.Turn;

@@ -7,7 +7,7 @@ namespace Battle.Actions
     {
         public override void Use()
         {
-            BattleManager.target.DoDamage((int) value);
+            unitRelated.DoDamage((int) value);
         }
     }
 }

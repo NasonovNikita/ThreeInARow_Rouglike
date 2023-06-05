@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c772b0a5b60ec4f92c99ada5909ddf, type: 3}
-  m_Name: TimeStop
+  m_Script: {fileID: 11500000, guid: 1fa78bc7f0d8464182495c518d09a79e, type: 3}
+  m_Name: When-HpLess50-Dmg+0.5
   m_EditorClassIdentifier: 
-  useAble: {fileID: 11400000, guid: a9c47ec55ef8fdc4485ccdfdf7b8b18a, type: 2}
   value: 0
-  manaCost: 50
-  title: Time Stop
+  useAble: {fileID: 11400000, guid: 977152bd26ed5d94e96fa6bd9dd9c7b0, type: 2}

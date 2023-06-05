@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3097e69f41d543b280a1c82e41ffe835, type: 3}
-  m_Name: HpLess50-Dmg1.5
+  m_Script: {fileID: 11500000, guid: a3634b87c50419942a4d79df6fc2dc0f, type: 3}
+  m_Name: Damage+1.5for2
   m_EditorClassIdentifier: 
-  value: 50
-  useAble: {fileID: 11400000, guid: 8dff3a63a82322e4eb105ccfa73ad7ab, type: 2}
-  type: 0
-  compare: 3
+  useAble: {fileID: 0}
+  value: 1.5
+  type: 1
+  affects: 2
+  statTypeType: 2
+  moves: 2

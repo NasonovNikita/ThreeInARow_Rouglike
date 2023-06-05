@@ -111,8 +111,8 @@ namespace Battle.Units
 
         private static float UseMods(ModAffect type, float value, IReadOnlyDictionary<ModAffect, List<Modifier>> mods)
         {
-            float mulValue = 1 + mods[type].Sum(mod => mod.Type == ModType.Mul ? mod.Value : 0);
-            int addValue = (int) mods[type].Sum(mod => mod.Type == ModType.Add ? mod.Value : 0);
+            float mulValue = 1 + mods[type].Sum(mod => mod.Type == ModType.Mul ? mod.GetValue() : 0);
+            int addValue = (int) mods[type].Sum(mod => mod.Type == ModType.Add ? mod.GetValue() : 0);
             return value * mulValue + addValue;
         }
 
