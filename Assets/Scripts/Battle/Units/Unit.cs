@@ -25,14 +25,16 @@ namespace Battle.Units
             mana.Init();
             damage.Init();
 
-            foreach (var item in items)
+            for (int i = 0; i < items.Count; i++)
             {
-                item.Init(this);
+                items[i] = Instantiate(items[i]);
+                items[i].Init(this);
             }
-
-            foreach (var spell in spells)
+            
+            for (int i = 0; i < spells.Count; i++)
             {
-                spell.Init(this);
+                spells[i] = Instantiate(spells[i]);
+                spells[i].Init(this);
             }
         }
     

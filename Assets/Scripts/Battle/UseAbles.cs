@@ -18,8 +18,9 @@ namespace Battle
         {
             unitRelated = unit;
             if (!useAble) return;
-            useAble.Init(unit);
             useAble = Instantiate(useAble);
+            // ReSharper disable once Unity.NoNullPropagation
+            useAble?.Init(unit);
         }
     }
 }
